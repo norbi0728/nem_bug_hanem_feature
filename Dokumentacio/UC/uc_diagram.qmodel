@@ -670,9 +670,22 @@
                       </DDependency>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DBoundary">
+                      <DBoundary>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{e05ec612-6940-4970-b61f-629f68c1b784}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <pos>x:640;y:475</pos>
+                       <rect>x:-545;y:-345;w:1090;h:690</rect>
+                      </DBoundary>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1582747001479</last-modified>
+                  <last-modified>1582747787574</last-modified>
                   <toolbarid>UseCases</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
