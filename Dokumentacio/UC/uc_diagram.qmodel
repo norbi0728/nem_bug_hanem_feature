@@ -520,52 +520,6 @@
                         <DObject>
                          <base-DElement>
                           <DElement>
-                           <uid>{6db76890-49b7-450d-b31f-140786c35313}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{c37175f7-fed7-4aa8-8e19-be074c378487}</object>
-                         <name>Regisztráció</name>
-                         <pos>x:985;y:265</pos>
-                         <rect>x:-45;y:-15;w:90;h:30</rect>
-                         <visual-role>0</visual-role>
-                        </DObject>
-                       </base-DObject>
-                       <variety>usecase</variety>
-                       <shape-editable>false</shape-editable>
-                      </DItem>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DConnection">
-                      <DConnection>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{7bb329ec-f831-4337-8b1a-a29d01c4e68b}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{cd5dce89-5d78-47c5-81b7-66182d5d7a83}</object>
-                         <a>{9c5f4cd5-97c1-4af5-99b8-cb2f6fd8292c}</a>
-                         <b>{6db76890-49b7-450d-b31f-140786c35313}</b>
-                        </DRelation>
-                       </base-DRelation>
-                       <custom-relation>Communication</custom-relation>
-                       <a>
-                        <DConnectionEnd>
-                         <navigable>true</navigable>
-                        </DConnectionEnd>
-                       </a>
-                      </DConnection>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DItem">
-                      <DItem>
-                       <base-DObject>
-                        <DObject>
-                         <base-DElement>
-                          <DElement>
                            <uid>{25954d6f-0b8a-4174-b92c-a000c585de10}</uid>
                           </DElement>
                          </base-DElement>
@@ -685,7 +639,7 @@
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1582747787574</last-modified>
+                  <last-modified>1582818670815</last-modified>
                   <toolbarid>UseCases</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -1356,7 +1310,7 @@
                     <uid>{c37175f7-fed7-4aa8-8e19-be074c378487}</uid>
                    </MElement>
                   </base-MElement>
-                  <name>Regisztráció</name>
+                  <name>Regisztráci</name>
                  </MObject>
                 </base-MObject>
                 <variety-editable>false</variety-editable>
