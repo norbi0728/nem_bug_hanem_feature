@@ -1,20 +1,28 @@
 package model;
 
+import java.util.Date;
+
 public class Reply {
+    private Date date;
     private String user;
     private String content;
     private int id;
+    private int postID;
 
     //when the reply is made
-    public Reply(String user, String content) {
+    public Reply(int postID, String user, String content) {
+        this.date = new Date(System.currentTimeMillis());
+        this.postID = postID;
         this.user = user;
         this.content = content;
     }
     //when it's read back from the database
-    public Reply(int id, String user, String content) {
+    public Reply(int id, int postID, String user, String content, Date date) {
         this.id = id;
+        this.postID = postID;
         this.user = user;
         this.content = content;
+        this.date = date;
     }
 
     public String getUser() {

@@ -9,11 +9,11 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String firstName, String lastName, String passwordHash) {
+    public User(String userName, String passwordHash, String firstName, String lastName) {
         this.userName = userName;
+        this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.passwordHash = passwordHash;
     }
 
     public String getFirstName() {
