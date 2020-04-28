@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import model.Database;
 import javax.xml.crypto.Data;
 
+import java.util.*;
+
 
 public class SubjectForumApplication extends Application {
     @Override
@@ -19,6 +21,15 @@ public class SubjectForumApplication extends Application {
         primaryStage.show();
 
         Database d = new Database();
+        /*
+        //Ez egy teszteset
+        ArrayList<String> v = new ArrayList<String>();
+        v = Database.QueryGetClassName("Name");
+        for(int i = 0; i < v.size(); i++)
+        {
+            System.out.println(v.get(i));
+        }
+        */
 
     }
 

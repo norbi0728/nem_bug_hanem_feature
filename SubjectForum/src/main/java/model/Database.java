@@ -2,6 +2,9 @@ package model;
 
 import java.sql.*;
 
+import java.util.*;
+
+
 public class Database {
 
     private static Connection con;
@@ -43,7 +46,7 @@ public class Database {
     //Selectben található eredméynből megnézi hogy található-e az adott String
     public static boolean ExistQuery(String query, String keres, String keresett)
     {
-        ResultSet result = null;
+        ResultSet result;
         boolean valt = false;
         try
         {
@@ -173,4 +176,69 @@ public class Database {
 
 
     }
+
+    //lekéri az összes classot egy listába
+    //Kéri hogy melyik oszlopbol kell adat
+    //Lehet Code = Tárgy kódjával, Name = Tárgy neve, ID = ID, Credit = Creditszám
+    // ez az összes class-t kéri le
+    public static ArrayList<String> QueryGetClassName(String adat)
+    {
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            ResultSet r = Query("SELECT "+ adat  +" FROM classes");
+            while (r.next()) {
+                list.add(r.getString(adat));
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    //lekéri az összes Postot egy listába a megadott classon belül
+    //Kéri hogy melyik oszlopbol kell adat
+    //Lehet ID = ID, Title = cím, Text = post üzenete, User_id = postoló id-ja, Class_id = posthoz tartozó óra id-ja
+    public static ArrayList<String> QueryGetPost(String adat, String className)
+    {
+        ArrayList<String> list = new ArrayList<>();
+        try {
+
+            ResultSet r = Query("SELECT "+ adat +" FROM forum_post WHERE class_id = '" + className +"'");
+            while (r.next()) {
+                list.add(r.getString(adat));
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+
+    //lekéri az összes Reply-t egy listába a megadott poston belül
+    //Kéri hogy melyik oszlopbol kell adat
+    //Lehet ID = ID,  User_id = válaszoló id-ja, Post_id = Melyik posthoz tartozik, reply = az üzenet tartalma
+    public static ArrayList<String> QueryGetReply(String adat, int id)
+    {
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            ResultSet r = Query("SELECT "+ adat +" FROM reply WHERE Post_id = '" + id +"'");
+            while (r.next()) {
+                list.add(r.getString(adat));
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+
 }
