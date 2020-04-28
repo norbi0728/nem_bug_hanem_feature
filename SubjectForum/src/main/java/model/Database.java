@@ -114,4 +114,60 @@ public class Database {
         }
         return valt;
     }
+
+    public static void InsertQueryForumPost(String Title, String Text, String userName , String classCode)
+    {
+        try {
+            ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + userName + "'");
+            ResultSet r2 = Query("SELECT ID FROM classes WHERE Code = '" + classCode +"'");
+            int u_id = 0, c_id = 0;
+            while(r.next())
+            {
+                u_id = r.getInt("ID");
+            }
+            while(r2.next())
+            {
+                c_id = r2.getInt("ID");
+            }
+            String query = " Insert into forum_post (Title , Text, User_id, class_id)" + "values (?, ?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, Title);
+            pstmt.setString(2, Text);
+            pstmt.setInt(3, u_id);
+            pstmt.setInt(4, c_id);
+
+            pstmt.execute();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void InsertQueryReply(String Reply, String userName , int post_id)
+    {
+        try {
+            ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + userName + "'");
+            int u_id = 0, c_id = 0;
+            while(r.next())
+            {
+                u_id = r.getInt("ID");
+            }
+            String query = " Insert into forum_post (Title , Text, User_id, post_id)" + "values (?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, u_id);
+            pstmt.setString(2, Reply);
+            pstmt.setInt(3, post_id);
+
+            pstmt.execute();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
+    }
 }

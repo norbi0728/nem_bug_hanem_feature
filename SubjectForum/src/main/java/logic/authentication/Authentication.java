@@ -36,4 +36,5 @@ public class Authentication {
     private String hash(String password){
         return String.valueOf(password.hashCode());
     }
+
 }

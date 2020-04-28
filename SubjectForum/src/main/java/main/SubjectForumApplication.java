@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Database;
+import javax.xml.crypto.Data;
 
 
 public class SubjectForumApplication extends Application {
@@ -15,6 +17,8 @@ public class SubjectForumApplication extends Application {
         primaryStage.setTitle("SubjectForum");
         primaryStage.setScene(new Scene(root, 744, 583));
         primaryStage.show();
+
+        Database d = new Database();
 
     }
 
