@@ -1,7 +1,7 @@
 package logic.authentication;
 
-import model.User;
 import model.Database;
+import model.User;
 
 public class Authentication {
     public static Authentication authentication = null;
@@ -12,8 +12,6 @@ public class Authentication {
 
         return authentication;
     }
-    //Database.ExistQuery("SELECT * FROM users", userName, "Username")
-
     public static String register(String userName, String password, String firstName, String lastName){
         if(Database.ExistQuery("SELECT Username FROM users", userName, "Username"))
             return "Felhasználónév " + userName + " már foglalt!";
@@ -32,10 +30,9 @@ public class Authentication {
     public static String login(String userName, String password){
         if(Database.LoginQuery(userName, password))
             return "Sikeres bejelentkezés!";
-       else
+        else
             return "Hibás felhasználónév vagy jelszó";
     }
-
     private String hash(String password){
         return String.valueOf(password.hashCode());
     }

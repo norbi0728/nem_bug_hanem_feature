@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <BorderPane layoutX="126.0" layoutY="67.0" prefHeight="583.0" prefWidth="744.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <Pane prefHeight="583.0" prefWidth="195.0" style="-fx-background-color: #2F4F4F;" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane id="registrationPane" fx:id="registrationPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Button id="backButton" fx:id="backButton" layoutX="211.0" layoutY="499.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="129.0" style="-fx-background-color: #696969;" text="Vissza" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="116.0" layoutY="52.0" prefHeight="45.0" prefWidth="190.0" text="Regisztráció" textFill="DARKSLATEGRAY">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Label>
+                        <Button id="regButton" fx:id="regButton" layoutX="161.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="228.0" style="-fx-background-color: #696969;" text="Regisztráció" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <VBox layoutX="115.0" layoutY="128.0" prefHeight="240.0" prefWidth="320.0">
+                           <children>
+                              <TextField id="inputLastname" fx:id="inputLastname" prefHeight="45.0" prefWidth="320.0" promptText="Vezetéknév" />
+                              <TextField id="inputFirstname" fx:id="inputFirstname" prefHeight="45.0" prefWidth="320.0" promptText="Keresztnév">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField id="inputUsername" fx:id="inputUsername" prefHeight="45.0" prefWidth="320.0" promptText="Felhasználónév">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <PasswordField id="inputPassword" fx:id="inputPassword" prefHeight="45.0" prefWidth="320.0" promptText="Jelszó">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane id="loginPane" fx:id="loginPane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="115.0" layoutY="77.0" prefHeight="45.0" prefWidth="190.0" text="Bejelentkezés">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                        </Label>
+                        <Button id="loginButton" fx:id="loginButton" layoutX="274.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="160.0" style="-fx-background-color: #2F4F4F;" text="Bejelentkezés" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button id="toRegButton" fx:id="toRegButton" layoutX="115.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="320.0" style="-fx-background-color: #C0C0C0;" text="Nincs még fiókod? Regisztrálj!">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <TextField id="inputUsernameLog" fx:id="inputUsernameLog" layoutX="115.0" layoutY="181.0" prefHeight="45.0" prefWidth="320.0" promptText="Felhasználónév" />
+                        <PasswordField id="inputPasswordLog" fx:id="inputPasswordLog" layoutX="114.0" layoutY="247.0" prefHeight="45.0" prefWidth="320.0" promptText="Jelszó" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
