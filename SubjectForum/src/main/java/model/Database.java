@@ -115,6 +115,8 @@ public class Database {
         return valt;
     }
 
+
+    //Not Tested Yet
     public static void InsertQueryForumPost(String Title, String Text, String userName , String classCode)
     {
         try {
@@ -146,6 +148,7 @@ public class Database {
 
     }
 
+    //Not Tested yet
     public static void InsertQueryReply(String Reply, String userName , int post_id)
     {
         try {
