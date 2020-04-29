@@ -25,6 +25,10 @@ public class Controller implements Initializable {
     private TextField inputUsernameLog;
     @FXML
     private TextField inputPasswordLog;
+    @FXML
+    private TextField inputNeptuncode;
+    @FXML
+    private TextField inputNeptunpassword;
 
 
 

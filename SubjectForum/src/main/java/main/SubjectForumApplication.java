@@ -21,7 +21,7 @@ public class SubjectForumApplication extends Application {
         primaryStage.show();
 
         Database d = new Database();
-        /*
+
         //Ez egy teszteset
         ArrayList<String> v = new ArrayList<String>();
         v = Database.QueryGetClassName("Name");
@@ -29,7 +29,9 @@ public class SubjectForumApplication extends Application {
         {
             System.out.println(v.get(i));
         }
-        */
+        //Database.InsertQueryUsers("EzegyUsername","EzegyJelszo","Minta","Péter");
+        //System.out.println(Database.LoginQuery("EzegyUsername","EzegyJelszo"));
+
 
     }
 
