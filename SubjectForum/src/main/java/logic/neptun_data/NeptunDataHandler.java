@@ -31,7 +31,7 @@ public class NeptunDataHandler {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         WebDriver driver = new ChromeDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(13));
 
         try {
             driver.get("https://neptun11.uni-pannon.hu/hallgato/Login.aspx");
@@ -51,13 +51,21 @@ public class NeptunDataHandler {
             WebElement classesList = wait.until(presenceOfElementLocated(By.className("scrollablebody")));
             List<WebElement> classes = classesList.findElements(By.tagName("span"));
             for (WebElement webElement: classes) {
-                classesNames.add(new String(webElement.getText().getBytes(Charset.forName("utf-8"))));
+                //classesNames.add(new String(webElement.getText().getBytes(Charset.forName("utf-8"))));
+                classesNames.add(webElement.getText());
             }
         } catch (Exception e){
             e.printStackTrace();
+            return null;
         } finally {
             driver.quit();
         }
         return classesNames;
     }
+
+//    public static void main(String[] args) {
+//        for(String s: getNeptunDataHandler().getSubjectNames("", "")){
+//            System.out.println(s);
+//        }
+//    }
 }

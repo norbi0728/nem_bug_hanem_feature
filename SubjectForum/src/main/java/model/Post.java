@@ -11,6 +11,7 @@ public class Post {
     private String title;
     private int id;
     private List<Reply> replies;
+
     private String subject; //the name of the class, e.g. Programming I.
 
     //when it's just have made
@@ -35,6 +36,9 @@ public class Post {
 
     public Post(){}
 
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
+    }
     public void reply(String user, String content){
         replies.add(new Reply(id, user, content));
     }

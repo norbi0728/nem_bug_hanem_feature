@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+    <children>
+        <AnchorPane layoutX="279.0" layoutY="-1.0" prefHeight="800.0" prefWidth="920.0">
+            <children>
+            </children>
+            <children>
+                <Pane id="neptunPane" fx:id="neptunPane" prefHeight="800.0" prefWidth="920.0">
+                    <children>
+                        <VBox layoutX="122.0" layoutY="277.0" prefHeight="246.0" prefWidth="367.0" spacing="40.0">
+                            <children>
+                                <TextField id="inputNeptuncode" fx:id="inputNeptuncode" prefHeight="50.0" prefWidth="367.0" promptText="Neptunkód" />
+                                <PasswordField id="inputNeptunpassword" fx:id="inputNeptunpassword" prefHeight="50.0" prefWidth="367.0" promptText="Jelszó" />
+                                <Button id="loginNeptunButton" fx:id="loginNeptunButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="377.0" style="-fx-background-color: #808080;" text="Bejelentkezés" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="21.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <Label layoutX="122.0" layoutY="184.0" prefHeight="44.0" prefWidth="645.0" text="Neptun belépési adatok megadása a tárgyak lekérdézéséhez" textFill="GREY">
+                            <font>
+                                <Font name="System Bold Italic" size="22.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="subjectPane" prefHeight="800.0" prefWidth="280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button id="exitButton" fx:id="exitButton" layoutY="380.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #2F4F4F;" text="Kilépés" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Button id="subjectButton" fx:id="subjectButton" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #2F4F4F;" text="Tárgyaim" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Button>
+
+                <Button id="profilButton" fx:id="profilButton" layoutY="320.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #2F4F4F;" text="Profil" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Button id="neptunButton" fx:id="neptunButton" layoutY="260.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #2F4F4F;" text="Neptun" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Button>
+                <ListView fx:id="subjectList" layoutX="8.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
