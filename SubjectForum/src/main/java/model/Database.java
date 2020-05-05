@@ -3,6 +3,7 @@ package model;
 import java.sql.*;
 
 import java.util.*;
+import model.Post;
 
 
 public class Database {
@@ -120,11 +121,11 @@ public class Database {
 
 
     //Not Tested Yet
-    public static void InsertQueryForumPost(String Title, String Text, String userName , String classCode)
+    public static void InsertQueryForumPost(Post post)
     {
         try {
-            ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + userName + "'");
-            ResultSet r2 = Query("SELECT ID FROM classes WHERE Code = '" + classCode +"'");
+            ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + post.getAuthor() + "'");
+            ResultSet r2 = Query("SELECT ID FROM classes WHERE Code = '" + post.getClass() +"'");
             int u_id = 0, c_id = 0;
             while(r.next())
             {
@@ -134,10 +135,12 @@ public class Database {
             {
                 c_id = r2.getInt("ID");
             }
-            String query = " Insert into forum_post (Title , Text, User_id, class_id)" + "values (?, ?, ?, ?)";
+            String title = post.getTitle();
+            String text = post.getContent();
+            String query = " Insert into forum_post (title , text, User_id, class_id)" + "values (?, ?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, Title);
-            pstmt.setString(2, Text);
+            pstmt.setString(1, title);
+            pstmt.setString(2, text);
             pstmt.setInt(3, u_id);
             pstmt.setInt(4, c_id);
 
@@ -152,10 +155,10 @@ public class Database {
     }
 
     //Not Tested yet
-    public static void InsertQueryReply(String Reply, String userName , int post_id)
+    public static void InsertQueryReply(Reply reply)
     {
         try {
-            ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + userName + "'");
+            ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + reply.getUser() + "'");
             int u_id = 0, c_id = 0;
             while(r.next())
             {
@@ -164,8 +167,8 @@ public class Database {
             String query = " Insert into forum_post (Title , Text, User_id, post_id)" + "values (?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setInt(1, u_id);
-            pstmt.setString(2, Reply);
-            pstmt.setInt(3, post_id);
+            pstmt.setString(2, reply.getContent());
+            pstmt.setInt(3, reply.getPostID());
 
             pstmt.execute();
         }
@@ -201,12 +204,12 @@ public class Database {
     //lekéri az összes Postot egy listába a megadott classon belül
     //Kéri hogy melyik oszlopbol kell adat
     //Lehet ID = ID, Title = cím, Text = post üzenete, User_id = postoló id-ja, Class_id = posthoz tartozó óra id-ja
-    public static ArrayList<String> QueryGetPost(String adat, String className)
+    public static ArrayList<String> QueryGetPost(String adat, String classId)
     {
         ArrayList<String> list = new ArrayList<>();
         try {
 
-            ResultSet r = Query("SELECT "+ adat +" FROM forum_post WHERE class_id = '" + className +"'");
+            ResultSet r = Query("SELECT "+ adat +" FROM forum_post WHERE class_id = '" + classId +"'");
             while (r.next()) {
                 list.add(r.getString(adat));
             }
@@ -239,5 +242,94 @@ public class Database {
         return list;
     }
 
+    public static ArrayList<Post> GetListofPost(String className)
+    {
+        ArrayList<Post> list = new ArrayList<Post>();
+        try
+        {
+            int cid = 0;
+            ResultSet cclass = Query("SELECT ID FROM classes WHERE Name = '" + className +"'");
+            while(cclass.next())
+            {
+                cid = cclass.getInt("ID");
+            }
+            ResultSet r = Query("SELECT * FROM forum_post WHERE Class_id = " + cid);
+            while(r.next())
+            {
+                ResultSet userNameSet = Query("SELECT Username FROM users WHERE ID = " + r.getInt("User_id"));
+                String userName = "";
+                while(userNameSet.next())
+                {
+                    userName = userNameSet.getString("Username");
+                }
+                Post p = new Post();
+                p.setAuthor(userName);
+                p.setContent(r.getString("Text"));
+                p.setSubject(className);
+                p.setTitle(r.getString("Title"));
+                list.add(p);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<Reply> GetListofReply(Post post)
+    {
+        ArrayList<Reply> list = new ArrayList<Reply>();
+        try
+        {
+            ResultSet r = Query("SELECT * FROM replies WHERE Post_id = " + post.getID());
+            while(r.next())
+            {
+                Reply p = new Reply();
+                p.setId(r.getInt("ID"));
+                p.setContent(r.getString("reply"));
+                ResultSet userNameSet = Query("SELECT Username FROM users WHERE ID = " + r.getInt("User_id"));
+                String userName = "";
+                while(userNameSet.next())
+                {
+                    userName = userNameSet.getString("Username");
+                }
+                p.setUser(userName);
+                p.setPostID(r.getInt("Post_id"));
+                list.add(p);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
+
+    //Ez visszaadja a listát ami tartalmazza a Postokat és a hozzátartozó Replyokat
+    //Mappel van megoldva
+
+    public static ArrayList<Map<Post,ArrayList<Reply>>> QueryGetEverything(String className)
+    {
+        ArrayList<Map<Post,ArrayList<Reply>>> array = new ArrayList<Map<Post,ArrayList<Reply>>>();
+        try
+        {
+            ArrayList<Post> postarray = GetListofPost(className);
+            for (Post post : postarray)
+            {
+                Map<Post,ArrayList<Reply>> mapp = new HashMap<Post, ArrayList<Reply>>();
+                ArrayList<Reply> replyarray = GetListofReply(post);
+                mapp.put(post, replyarray);
+                array.add(mapp);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return array;
+    }
 
 }

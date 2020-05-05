@@ -33,6 +33,8 @@ public class Post {
         this.subject = subject;
     }
 
+    public Post(){}
+
     public void reply(String user, String content){
         replies.add(new Reply(id, user, content));
     }
@@ -40,4 +42,22 @@ public class Post {
     public String getContent() {
         return content;
     }
+
+    public void setContent(String content) { this.content = content; }
+
+    public String getAuthor() { return author; }
+
+    public void setAuthor(String author) { this.author = author; }
+
+    public String getSubject() { return subject; }
+
+    public void setSubject(String subject) { this.subject = subject; }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) {this.title = title; }
+
+    public int getID() { return id; }
+
+    public void setID(int id) { this.id = id; }
 }
