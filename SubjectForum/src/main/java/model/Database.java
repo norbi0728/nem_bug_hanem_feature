@@ -2,6 +2,8 @@ package model;
 
 import java.sql.*;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.*;
 import model.Post;
 
@@ -9,11 +11,11 @@ import model.Post;
 public class Database {
 
     private static Connection con;
-    private static Statement stmt;
 
     public Database()
     {
         try{
+            Statement stmt;
             Class.forName("com.mysql.jdbc.Driver");
             String url, user, pwd;
             url = "jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2332780";
@@ -21,7 +23,6 @@ public class Database {
             pwd = "dZ4%zW3*";
             con = DriverManager.getConnection(url, user, pwd);
             System.out.println("Connection: " + con);
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
         }
         catch (Exception e)
@@ -36,6 +37,7 @@ public class Database {
     {
         ResultSet result = null;
         try {
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             result = stmt.executeQuery(query);
         }
         catch (Exception e) {
@@ -51,6 +53,7 @@ public class Database {
         boolean valt = false;
         try
         {
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             result = stmt.executeQuery(query);
             while(result.next())
             {
@@ -137,12 +140,13 @@ public class Database {
             }
             String title = post.getTitle();
             String text = post.getContent();
-            String query = " Insert into forum_post (title , text, User_id, class_id)" + "values (?, ?, ?, ?)";
+            String query = " Insert into forum_post (title , text, User_id, class_id, Time)" + "values (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, title);
             pstmt.setString(2, text);
             pstmt.setInt(3, u_id);
             pstmt.setInt(4, c_id);
+            pstmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
 
             pstmt.execute();
         }
@@ -164,11 +168,12 @@ public class Database {
             {
                 u_id = r.getInt("ID");
             }
-            String query = " Insert into forum_post (Title , Text, User_id, post_id)" + "values (?, ?, ?)";
+            String query = " Insert into forum_post (Title , Text, User_id, post_id, Time)" + "values (?, ?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setInt(1, u_id);
             pstmt.setString(2, reply.getContent());
             pstmt.setInt(3, reply.getPostID());
+            pstmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
 
             pstmt.execute();
         }
@@ -263,10 +268,12 @@ public class Database {
                     userName = userNameSet.getString("Username");
                 }
                 Post p = new Post();
-                p.setAuthor(userName);
                 p.setContent(r.getString("Text"));
-                p.setSubject(className);
                 p.setTitle(r.getString("Title"));
+                p.setAuthor(userName);
+                p.setSubject(className);
+                p.setID(r.getInt("ID"));
+
                 list.add(p);
             }
         }
