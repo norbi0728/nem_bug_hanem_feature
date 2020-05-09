@@ -56,4 +56,7 @@ public class Reply {
     public void setPostID(int postID) { this.postID = postID; }
 
 
+    public Date getDate() {
+        return date;
+    }
 }

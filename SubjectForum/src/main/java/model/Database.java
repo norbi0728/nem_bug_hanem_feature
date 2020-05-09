@@ -123,18 +123,16 @@ public class Database {
     //Not Tested Yet
     public static void InsertQueryForumPost(Post post)
     {
+        int u_id = 0, c_id = 0;
         try {
             ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + post.getAuthor() + "'");
-            ResultSet r2 = Query("SELECT ID FROM classes WHERE Code = '" + post.getClass() +"'");
-            int u_id = 0, c_id = 0;
-            while(r.next())
-            {
-                u_id = r.getInt("ID");
-            }
-            while(r2.next())
-            {
-                c_id = r2.getInt("ID");
-            }
+
+            r.first();
+            u_id = r.getInt("ID");
+            ResultSet r2 = Query("SELECT ID FROM classes WHERE Code = '" + post.getSubject() +"'");
+            r2.first();
+            c_id = r2.getInt("ID");
+
             String title = post.getTitle();
             String text = post.getContent();
             String query = " Insert into forum_post (title , text, User_id, class_id)" + "values (?, ?, ?, ?)";

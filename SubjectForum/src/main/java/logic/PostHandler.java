@@ -36,19 +36,66 @@ public class PostHandler {
 
     public List<Post> getPosts(String subjectName){
         List<Post> posts = new ArrayList<>();
-        List<Map<Post,ArrayList<Reply>>> everything = Database.QueryGetEverything(subjectName);
+        if(subjectName.equals("Szoftverfejlesztés")) {
+            Post post1 = new Post("test1", "testUser", "testtext1", "Szoftverfejlesztés");
+            ArrayList<Reply> replies1 = new ArrayList<>();
+            replies1.add(new Reply(1, "testUser2", "testcomment1"));
+            replies1.add(new Reply(1, "testUser2", "testcomment2"));
+            replies1.add(new Reply(1, "testUser2", "testcomment3"));
 
-        for(Map m: everything){
-            for(Object temp: m.entrySet()){
-                Map<Post, ArrayList<Reply>> g = (Map<Post, ArrayList<Reply>>)temp;
-                for(Map.Entry<Post, ArrayList<Reply>> entry: g.entrySet()){
+            Post post2 = new Post("test2", "testUser", "testtext2", "Szoftverfejlesztés");
+            ArrayList<Reply> replies2 = new ArrayList<>();
+            replies2.add(new Reply(2, "testUser3", "testcomment1"));
+            replies2.add(new Reply(2, "testUser3", "testcomment2"));
+            replies2.add(new Reply(2, "testUser3", "testcomment3"));
+
+            Map<Post, ArrayList<Reply>> mp1 = new HashMap<>();
+            Map<Post, ArrayList<Reply>> mp2 = new HashMap<>();
+            mp1.put(post1, replies1);
+            mp2.put(post2, replies2);
+//        List<Map<Post,ArrayList<Reply>>> everything = Database.QueryGetEverything(subjectName);
+            List<Map<Post, ArrayList<Reply>>> everything = new ArrayList<>();
+            everything.add(mp1);
+            everything.add(mp2);
+
+            for (Map<Post, ArrayList<Reply>> m : everything) {
+                for (Map.Entry<Post, ArrayList<Reply>> entry : m.entrySet()) {
                     Post p = entry.getKey();
                     p.setReplies(entry.getValue());
                     posts.add(p);
                 }
             }
         }
+        else if(subjectName.equals("Szoftvermodellezés és tesztelés")){
+            Post post1 = new Post("test4", "testUser4", "testtext4", "Szoftvermodellezés és tesztelés");
+            ArrayList<Reply> replies1 = new ArrayList<>();
+            replies1.add(new Reply(1, "testUser4", "testcomment4"));
+            replies1.add(new Reply(1, "testUser4", "testcomment5"));
+            replies1.add(new Reply(1, "testUser4", "testcomment6"));
 
+            Post post2 = new Post("test5", "testUser5", "testtext5", "Szoftvermodellezés és tesztelés");
+            ArrayList<Reply> replies2 = new ArrayList<>();
+            replies2.add(new Reply(2, "testUser5", "testcomment7"));
+            replies2.add(new Reply(2, "testUser5", "testcomment8"));
+            replies2.add(new Reply(2, "testUser5", "testcomment9"));
+
+            Map<Post, ArrayList<Reply>> mp1 = new HashMap<>();
+            Map<Post, ArrayList<Reply>> mp2 = new HashMap<>();
+            mp1.put(post1, replies1);
+            mp2.put(post2, replies2);
+//        List<Map<Post,ArrayList<Reply>>> everything = Database.QueryGetEverything(subjectName);
+            List<Map<Post, ArrayList<Reply>>> everything = new ArrayList<>();
+            everything.add(mp1);
+            everything.add(mp2);
+
+            for (Map<Post, ArrayList<Reply>> m : everything) {
+                for (Map.Entry<Post, ArrayList<Reply>> entry : m.entrySet()) {
+                    Post p = entry.getKey();
+                    p.setReplies(entry.getValue());
+                    posts.add(p);
+                }
+            }
+        }
         return posts;
     }
 

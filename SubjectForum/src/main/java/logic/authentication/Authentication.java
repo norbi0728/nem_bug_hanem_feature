@@ -3,7 +3,11 @@ package logic.authentication;
 import model.Database;
 import model.User;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Authentication {
+    private static String username;
     public static Authentication authentication = null;
 
     public static Authentication getAuthentication(){
@@ -28,11 +32,30 @@ public class Authentication {
     }
 
     public static String login(String userName, String password){
-        if(Database.LoginQuery(userName, password))
+        if(Database.LoginQuery(userName, password)) {
+            username = userName;
             return "Sikeres bejelentkezés!";
+        }
         else
             return "Hibás felhasználónév vagy jelszó";
     }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static String getUsersFullName() throws SQLException {
+        String firstName;
+        String lastName;
+        ResultSet rs = Database.Query("SELECT * FROM users WHERE USERNAME="+
+                "'"+username+"'");
+        rs.first();
+        firstName = rs.getString("Firstname");
+        lastName = rs.getString("Lastname");
+
+        return lastName + " " + firstName;
+    }
+
     private String hash(String password){
         return String.valueOf(password.hashCode());
     }

@@ -1,9 +1,10 @@
 package logic.neptun_data;
 
 import java.util.List;
+import java.util.Map;
 
 public class NeptunDataHandlerThread extends Thread {
-    private List<String> subjectNames;
+    private Map<String, String> subjectNames;
     private String neptunCode;
     private String neptunPassword;
 
@@ -19,7 +20,7 @@ public class NeptunDataHandlerThread extends Thread {
                 .getSubjectNames(neptunCode, neptunPassword);
     }
 
-    public List<String> getSubjectNames() {
+    public Map<String, String> getSubjectNames() {
         return subjectNames;
     }
 }

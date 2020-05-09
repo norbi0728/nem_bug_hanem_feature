@@ -1,0 +1,31 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<fx:root type="javafx.scene.control.ListCell" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <graphic>
+        <VBox>
+            <children>
+                <HBox spacing="10">
+                    <children>
+                        <Label fx:id="titleLabel" />
+                        <Label fx:id="authorLabel"/>
+                        <Label fx:id="dateLabel"/>
+                    </children>
+                </HBox>
+                <Label fx:id="contentLabel"/>
+                <VBox fx:id="commentVBox">
+                    <children>
+
+                    </children>
+                </VBox>
+                <ListView fx:id="lv" editable="true" layoutX="153.0" layoutY="193.0" prefHeight="97.0" prefWidth="192.0" visible="false" />
+                <TextArea fx:id="commentArea" />
+                <Button fx:id="submitComment"/>
+            </children>
+        </VBox>
+
+    </graphic>
+</fx:root>

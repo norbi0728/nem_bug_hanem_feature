@@ -1,36 +1,47 @@
 package controller;
 
 import alert.AlertBox;
+import com.sun.javafx.scene.control.skin.TextAreaSkin;
+import graphics.PostCellFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import logic.PostHandler;
 import logic.authentication.Authentication;
 import logic.neptun_data.NeptunDataHandlerThread;
+import model.Database;
 import model.Post;
+import model.Reply;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.nio.charset.Charset;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 
 public class Controller implements Initializable {
+    private String currentSubject;
     @FXML
-    private TextField inputLastname;
+    private TextField familyNameField;
     @FXML
-    private TextField inputFirstname;
+    private TextField givenNameField;
     @FXML
-    private TextField inputUsername;
+    private TextField regUserNameField;
     @FXML
-    private TextField inputPassword;
+    private TextField regPasswordField;
     @FXML
     private TextField inputUsernameLog;
     @FXML
@@ -62,49 +73,64 @@ public class Controller implements Initializable {
     private Button loginNeptunButton;
 
     @FXML
-    private ProgressBar neptunSubjectGetterIndicator;
-
+    private Label nameLabel;
     @FXML
     private Pane loginPane;
     @FXML
-    private Pane registrationPane;
+    private Pane statusPane;
     @FXML
-    private AnchorPane subjectPane;
+    private Pane regPane;
     @FXML
-    private AnchorPane rootPane;
+    private Pane subjectPane;
+    @FXML
+    private AnchorPane secondRoot;
     @FXML
     private Pane neptunPane;
     @FXML
     private ListView<String> subjectList;
+    @FXML
+    private Label subjectName;
+    @FXML
+    private ListView<Post> postDisplay;
+    @FXML
+    private ListView<String> lv;
+    @FXML
+    private StackPane stackPane;
+    @FXML
+    private TextArea postContent;
+    @FXML
+    private TextField titleField;
+
+    Map<String, String> classCodeNames;
+
+    private static final String REST_URI = "http://localhost:5000/";
+    private static Client client = ClientBuilder.newClient();
+    int counter = 0;
+    private TextAreaSkin skin;
+    private String selectedWord;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws InterruptedException {
         if(event.getSource().equals(toRegButton)){
-            registrationPane.setVisible(true);
+            regPane.setVisible(true);
             loginPane.setVisible(false);
-        }
-        if(event.getSource().equals(regButton)){
-            //regisztracio fv hivas
-            Authentication.getAuthentication().register( inputUsername.getText(), inputPassword.getText(), inputFirstname.getText(), inputLastname.getText());
-            registrationPane.setVisible(false);
-            loginPane.setVisible(true);
         }
         if(event.getSource().equals(loginButton)){
             //login fv hivasa
             //valtas a kovi pane-re
-            Authentication.getAuthentication().login(inputUsernameLog.getText(), inputPasswordLog.getText());
-            loadSecond(event);
-        }
-        if(event.getSource().equals(backButton)){
-            registrationPane.setVisible(false);
-            loginPane.setVisible(true);
+            String msg = Authentication.getAuthentication().login(inputUsernameLog.getText(), inputPasswordLog.getText());
+            AlertBox.display("Figyelem", msg);
+            if(msg.equals("Sikeres bejelentkezés!")){
+                loadSecond(event);
+            }
+
         }
         if(event.getSource().equals(exitButton)){
             System.exit(0);
         }
         if(event.getSource().equals(neptunButton)){
-            //neptunPane.setVisible(true);
-            //subjectPane.setVisible(false);
+            neptunPane.setVisible(true);
+            subjectPane.setVisible(false);
             // plusz az osszes tobbi : .setVisible(false);
         }
         if(event.getSource().equals(subjectButton)){
@@ -121,6 +147,7 @@ public class Controller implements Initializable {
             // plusz az osszes tobbi : .setVisible(false);
         }
         if(event.getSource().equals(loginNeptunButton)){
+            List<String> classNames = new ArrayList<>();
             NeptunDataHandlerThread neptunDataHandlerThread = new NeptunDataHandlerThread(
                     inputNeptuncode.getText(), inputNeptunpassword.getText());
 
@@ -132,27 +159,54 @@ public class Controller implements Initializable {
 
             if(neptunDataHandlerThread.getSubjectNames() != null){
                 AlertBox.display("Figyelem", "Tantargyak sikeresen betoltve!");
-                subjectList.getItems().addAll(neptunDataHandlerThread.getSubjectNames());
+                classCodeNames = neptunDataHandlerThread.getSubjectNames();
+                for(Map.Entry<String,String> s: classCodeNames.entrySet()){
+                    classNames.add(s.getKey());
+                }
+                subjectList.getItems().addAll(classNames);
 
-                AtomicReference<List<Post>> posts = null;
+                final List<Post>[] posts = new List[]{null};
                 subjectList.setOnMouseClicked(event1 ->{
-                    System.out.println(subjectList.getSelectionModel().getSelectedItem());
-                    posts.set(PostHandler.getPostHandler().getPosts("Szoftverfejlesztes"));
-                        });
-//                for (Post p: posts.get()){
-//                    System.out.println(p.getContent());
-//                }
+
+                    String selected = subjectList.getSelectionModel().getSelectedItem();
+                    this.currentSubject = selected;
+                    System.out.println(selected);
+                    if(!statusPane.isVisible())
+                        statusPane.setVisible(true);
+                    try {
+                        nameLabel.setText(Authentication.getUsersFullName());
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    if (!subjectPane.isVisible())
+                        subjectPane.setVisible(true);
+                    subjectName.setText(selected);
+                    if(neptunPane.isVisible())
+                        neptunPane.setVisible(false);
+                    setTextAreaProperties();
+                    postDisplay.getItems().clear();
+                    postDisplay.setCellFactory(new PostCellFactory());
+                    secondRoot.setBottomAnchor(stackPane, 8.0);
+                    secondRoot.setRightAnchor(stackPane, 8.0);
+                    secondRoot.setTopAnchor(stackPane, 8.0);
+                    secondRoot.setLeftAnchor(stackPane, 8.0);
+                    posts[0] = PostHandler.getPostHandler().getPosts(new String(selected.getBytes(Charset.forName("utf-8"))));
+                    for (Post p: posts[0]){
+                        postDisplay.getItems().add(p);
+                    }
+                });
 
             }
             else {
                 AlertBox.display("Figyelem", "Tantargyak betoltese sikertelen! Lehet, hogy elirtad a neptunkodod, vagy a jelszavad. Kerlek probald meg ujbol!");
             }
-
-
         }
 
     }
 
+    void showSubjectPane(){
+        subjectPane.setVisible(true);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -162,12 +216,107 @@ public class Controller implements Initializable {
     @FXML
     private void loadSecond(ActionEvent event){
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/oldal.fxml"));
-            rootPane.getChildren().setAll(pane);
+            Parent root = FXMLLoader.load(getClass().getResource("/oldal.fxml"));
+//            rootPane.getChildren().setAll(pane);
+//            rootPane.setPrefWidth(1600);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
         }catch (Exception e){
             e.printStackTrace();
         }
 
+    }
+
+    public void register() throws InterruptedException {
+        String msg = Authentication.getAuthentication().register( regUserNameField.getText(), regPasswordField.getText(), givenNameField.getText(), familyNameField.getText());
+        AlertBox.display("Figyelem", msg);
+        if(msg.equals("Sikeres regisztráció!")){
+            regPane.setVisible(false);
+            loginPane.setVisible(true);
+        }
+    }
+
+    public void backToLogin(MouseEvent mouseEvent) {
+        regPane.setVisible(false);
+        loginPane.setVisible(true);
+    }
+    @FXML
+    public void print(KeyEvent e) {
+
+        if (e.getCode().isLetterKey() || e.getCode().getName() == "Backspace"){
+            skin = (TextAreaSkin) postContent.getSkin();
+            lv.setLayoutY(skin.getCaretBounds().getMaxY() + 165);
+            lv.setLayoutX(skin.getCaretBounds().getMinX());
+            String response = "";
+            try {
+                response = client.target(REST_URI + currentWord(postContent.getText())).request().get(String.class);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+            if (response != ""){
+                String[] splittedResponse = response.split(" ");
+                lv.getItems().clear();
+                lv.getItems().addAll(splittedResponse);
+                lv.setVisible(true);
+                lv.getSelectionModel().select(counter);
+                selectedWord = lv.getSelectionModel().getSelectedItem();
+            }
+        }
+        if(e.getCode().getName() == "Space"){
+            lv.setVisible(false);
+            selectedWord = null;
+        }
+
+        if(e.getCode().getName() == "Tab" || e.getCode().getName() == "Enter"){
+            if (selectedWord != null){
+                postContent.replaceText((postContent.getCaretPosition() - currentWord(postContent.getText()).length())-1, postContent.getCaretPosition(), selectedWord);
+            }
+            lv.setVisible(false);
+            selectedWord = null;
+        }
+    }
+
+    public String currentWord(String text){
+        String textUntilCaret = text.substring(0, postContent.getCaretPosition());
+        String[] splittedText;
+        splittedText = textUntilCaret.split("\\s");
+        return splittedText[splittedText.length-1];
+    }
+
+    private void setTextAreaProperties() {
+        postContent.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().getName() == "Down" && lv.isVisible()){
+                event.consume();
+                if (counter < 2){
+                    counter++;
+                }
+                else {
+                    counter = 2;
+                }
+                lv.getSelectionModel().select(counter);
+                selectedWord = lv.getSelectionModel().getSelectedItem();
+            }
+            else if (event.getCode().getName() == "Up" && lv.isVisible()){
+                event.consume();
+                if (counter > 0){
+                    counter--;
+                }
+                else {
+                    counter = 0;
+                }
+                lv.getSelectionModel().select(counter);
+                selectedWord = lv.getSelectionModel().getSelectedItem();
+            }
+        });
+    }
+    //public Post(String title, String author, String content, String subject)
+    public void sendPost(MouseEvent mouseEvent) {
+        Post p = new Post(titleField.getText(), Authentication.getUsername(),
+                postContent.getText(), classCodeNames.get(currentSubject));
+        Database.InsertQueryForumPost(p);
+        postDisplay.getItems().add(p);
+        postDisplay.getItems().sort(Comparator.comparing(Post::getDate).reversed());
     }
 
 }
