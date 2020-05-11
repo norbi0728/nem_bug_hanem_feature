@@ -34,29 +34,10 @@ public class PostHandler {
         return results;
     }
 
-    public List<Post> getPosts(String subjectName){
-        List<Post> posts = new ArrayList<>();
-        List<Map<Post,ArrayList<Reply>>> everything = Database.QueryGetEverything(subjectName);
-
-        for(Map m: everything){
-            for(Object temp: m.entrySet()){
-                Map<Post, ArrayList<Reply>> g = (Map<Post, ArrayList<Reply>>)temp;
-                for(Map.Entry<Post, ArrayList<Reply>> entry: g.entrySet()){
-                    Post p = entry.getKey();
-                    p.setReplies(entry.getValue());
-                    posts.add(p);
-                }
-            }
-        }
+    public List<Post> getPosts(String subjectCode){
+        List<Post> posts = Database.QueryGetEverything(subjectCode);
 
         return posts;
     }
 
-//    public void addPost(String author, String content, String subject){
-//        Database.getDatabase().addPost(new Post(author, content, subject));
-//    }
-
-//    public void addReply(int postID, String username, String content){
-//        Database.getDatabase().addReply(new Reply(postID, username, content));
-//    }
 }

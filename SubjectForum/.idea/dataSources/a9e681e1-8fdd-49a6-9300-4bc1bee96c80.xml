@@ -647,7 +647,9 @@
     <user id="201" parent="1" name="sql2332780">
       <Host>%</Host>
     </user>
-    <table id="202" parent="3" name="classes"/>
+    <table id="202" parent="3" name="classes">
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
     <table id="203" parent="3" name="forum_post"/>
     <table id="204" parent="3" name="replies"/>
     <table id="205" parent="3" name="users">
@@ -668,8 +670,7 @@
     </column>
     <column id="208" parent="202" name="Name">
       <Position>3</Position>
-      <DataType>varchar(40)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="209" parent="202" name="Credit">
@@ -714,109 +715,125 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="216" parent="203" name="User_id">
+    <column id="216" parent="203" name="Time">
+      <Position>6</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+    </column>
+    <index id="217" parent="203" name="User_id">
       <ColNames>User_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="217" parent="203" name="Class_id">
+    <index id="218" parent="203" name="Class_id">
       <ColNames>Class_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="218" parent="203" name="PRIMARY">
+    <key id="219" parent="203" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="219" parent="203" name="FK_Forum_Post_User_id">
+    <foreign-key id="220" parent="203" name="FK_Forum_Post_User_id">
       <ColNames>User_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="220" parent="203" name="FK_Forum_Post_Class_id">
+    <foreign-key id="221" parent="203" name="FK_Forum_Post_Class_id">
       <ColNames>Class_id</ColNames>
       <RefTableName>classes</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="221" parent="204" name="ID">
+    <column id="222" parent="204" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="222" parent="204" name="User_id">
+    <column id="223" parent="204" name="User_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="223" parent="204" name="reply">
+    <column id="224" parent="204" name="reply">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="224" parent="204" name="Post_id">
+    <column id="225" parent="204" name="Post_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="225" parent="204" name="User_id">
+    <column id="226" parent="204" name="Time">
+      <Position>5</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+    </column>
+    <index id="227" parent="204" name="User_id">
       <ColNames>User_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="226" parent="204" name="Post_id">
+    <index id="228" parent="204" name="Post_id">
       <ColNames>Post_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="227" parent="204" name="PRIMARY">
+    <key id="229" parent="204" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="228" parent="204" name="FK_Replies_User_id">
+    <foreign-key id="230" parent="204" name="FK_Replies_User_id">
       <ColNames>User_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="229" parent="204" name="FK_Replies_Forum_post_id">
+    <foreign-key id="231" parent="204" name="FK_Replies_Forum_post_id">
       <ColNames>Post_id</ColNames>
       <RefTableName>forum_post</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="230" parent="205" name="ID">
+    <column id="232" parent="205" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="231" parent="205" name="Username">
+    <column id="233" parent="205" name="Username">
       <Position>2</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="232" parent="205" name="Password">
+    <column id="234" parent="205" name="Password">
       <Position>3</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="233" parent="205" name="Firstname">
+    <column id="235" parent="205" name="Firstname">
       <Position>4</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="205" name="LastName">
+    <column id="236" parent="205" name="LastName">
       <Position>5</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="235" parent="205" name="PRIMARY">
+    <key id="237" parent="205" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>

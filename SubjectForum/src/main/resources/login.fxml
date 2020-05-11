@@ -16,45 +16,6 @@
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane id="registrationPane" fx:id="registrationPane" prefHeight="200.0" prefWidth="200.0" visible="false">
-                     <children>
-                        <Button id="backButton" fx:id="backButton" layoutX="211.0" layoutY="499.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="129.0" style="-fx-background-color: #696969;" text="Vissza" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="19.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="116.0" layoutY="52.0" prefHeight="45.0" prefWidth="190.0" text="Regisztráció" textFill="DARKSLATEGRAY">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Label>
-                        <Button id="regButton" fx:id="regButton" layoutX="161.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="228.0" style="-fx-background-color: #696969;" text="Regisztráció" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="19.0" />
-                           </font>
-                        </Button>
-                        <VBox layoutX="115.0" layoutY="128.0" prefHeight="240.0" prefWidth="320.0">
-                           <children>
-                              <TextField id="inputLastname" fx:id="inputLastname" prefHeight="45.0" prefWidth="320.0" promptText="Vezetéknév" />
-                              <TextField id="inputFirstname" fx:id="inputFirstname" prefHeight="45.0" prefWidth="320.0" promptText="Keresztnév">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField id="inputUsername" fx:id="inputUsername" prefHeight="45.0" prefWidth="320.0" promptText="Felhasználónév">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <PasswordField id="inputPassword" fx:id="inputPassword" prefHeight="45.0" prefWidth="320.0" promptText="Jelszó">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </PasswordField>
-                           </children>
-                        </VBox>
-                     </children>
-                  </Pane>
                   <Pane id="loginPane" fx:id="loginPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="115.0" layoutY="77.0" prefHeight="45.0" prefWidth="190.0" text="Bejelentkezés">
@@ -74,6 +35,38 @@
                         </Button>
                         <TextField id="inputUsernameLog" fx:id="inputUsernameLog" layoutX="115.0" layoutY="181.0" prefHeight="45.0" prefWidth="320.0" promptText="Felhasználónév" />
                         <PasswordField id="inputPasswordLog" fx:id="inputPasswordLog" layoutX="114.0" layoutY="247.0" prefHeight="45.0" prefWidth="320.0" promptText="Jelszó" />
+                        <Button id="toRegButton" layoutX="81.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="389.0" style="-fx-background-color: #C0C0C0;" text="Új vagy még? Olvasd el a használati útmutatót!" onMouseClicked="#loadUserManual">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="regPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <VBox layoutX="172.0" layoutY="118.0" prefHeight="330.0" prefWidth="189.0" spacing="10.0">
+                           <children>
+                              <Label text="Vezetéknév" />
+                              <TextField fx:id="familyNameField" />
+                              <Label text="Keresztnév" />
+                              <TextField fx:id="givenNameField" />
+                              <Label text="Felhasználónév" />
+                              <TextField fx:id="regUserNameField" />
+                              <Label text="Jelszó" />
+                              <PasswordField fx:id="regPasswordField" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Button fx:id="backButton" mnemonicParsing="false" onMouseClicked="#backToLogin" text="Vissza" />
+                                    <Button fx:id="regButton" mnemonicParsing="false" onMouseClicked="#register" text="Regisztráció" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Label layoutX="172.0" layoutY="50.0" text="Regisztráció">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </children>

@@ -6,13 +6,19 @@ import java.util.List;
 
 public class Post {
     private Date date;
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     private String author;
     private String content;
     private String title;
+
     private int id;
     private List<Reply> replies;
 
-    private String subject; //the name of the class, e.g. Programming I.
+    private String subject; //the code of the class, e.g. VEMIMAB223F
 
     //when it's just have made
     public Post(String title, String author, String content, String subject) {
@@ -64,4 +70,12 @@ public class Post {
     public int getID() { return id; }
 
     public void setID(int id) { this.id = id; }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 }

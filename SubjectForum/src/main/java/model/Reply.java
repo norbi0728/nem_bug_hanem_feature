@@ -3,6 +3,10 @@ package model;
 import java.util.Date;
 
 public class Reply {
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     private Date date;
     private String user;
     private String content;
@@ -56,4 +60,7 @@ public class Reply {
     public void setPostID(int postID) { this.postID = postID; }
 
 
+    public Date getDate() {
+        return date;
+    }
 }

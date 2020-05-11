@@ -6,6 +6,8 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 
+import java.nio.charset.Charset;
+
 public class AlertBox {
 
     public static void display(String title, String message) throws InterruptedException {
@@ -16,8 +18,7 @@ public class AlertBox {
         window.setTitle(title);
         window.setMinWidth(250);
 
-        Label label = new Label();
-        label.setText(message);
+        Label label = new Label(message);//label.setText(new String(message.getBytes(Charset.forName("utf-8"))));
         Button closeButton = new Button("OK");
         closeButton.setOnAction(e -> window.close());
 

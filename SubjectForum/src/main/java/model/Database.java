@@ -22,7 +22,6 @@ public class Database {
             user = "sql2332780";
             pwd = "dZ4%zW3*";
             con = DriverManager.getConnection(url, user, pwd);
-            System.out.println("Connection: " + con);
 
         }
         catch (Exception e)
@@ -128,16 +127,13 @@ public class Database {
     {
         try {
             ResultSet r = Query("SELECT ID FROM users WHERE Username = '" + post.getAuthor() + "'");
-            ResultSet r2 = Query("SELECT ID FROM classes WHERE Code = '" + post.getClass() +"'");
+
             int u_id = 0, c_id = 0;
-            while(r.next())
-            {
-                u_id = r.getInt("ID");
-            }
-            while(r2.next())
-            {
-                c_id = r2.getInt("ID");
-            }
+            r.first();
+            u_id = r.getInt("ID");
+            ResultSet r2 = Query("SELECT ID FROM classes WHERE Code = '" + post.getSubject() +"'");
+            r2.first();
+            c_id = r2.getInt("ID");
             String title = post.getTitle();
             String text = post.getContent();
             String query = " Insert into forum_post (title , text, User_id, class_id, Time)" + "values (?, ?, ?, ?, ?)";
@@ -168,7 +164,7 @@ public class Database {
             {
                 u_id = r.getInt("ID");
             }
-            String query = " Insert into forum_post (Title , Text, User_id, post_id, Time)" + "values (?, ?, ?, ?)";
+            String query = " Insert into replies (User_id, reply, post_id, Time)" + "values (?, ?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setInt(1, u_id);
             pstmt.setString(2, reply.getContent());
@@ -253,7 +249,7 @@ public class Database {
         try
         {
             int cid = 0;
-            ResultSet cclass = Query("SELECT ID FROM classes WHERE Name = '" + className +"'");
+            ResultSet cclass = Query("SELECT ID FROM classes WHERE Code = '" + className +"'");
             while(cclass.next())
             {
                 cid = cclass.getInt("ID");
@@ -273,7 +269,7 @@ public class Database {
                 p.setAuthor(userName);
                 p.setSubject(className);
                 p.setID(r.getInt("ID"));
-
+                p.setDate(new java.util.Date(r.getTimestamp("Time").getTime()));
                 list.add(p);
             }
         }
@@ -286,7 +282,7 @@ public class Database {
 
     public static ArrayList<Reply> GetListofReply(Post post)
     {
-        ArrayList<Reply> list = new ArrayList<Reply>();
+        ArrayList<Reply> list = new ArrayList<>();
         try
         {
             ResultSet r = Query("SELECT * FROM replies WHERE Post_id = " + post.getID());
@@ -303,6 +299,7 @@ public class Database {
                 }
                 p.setUser(userName);
                 p.setPostID(r.getInt("Post_id"));
+                p.setDate(new java.util.Date(r.getTimestamp("Time").getTime()));
                 list.add(p);
             }
         }
@@ -318,25 +315,22 @@ public class Database {
     //Ez visszaadja a listát ami tartalmazza a Postokat és a hozzátartozó Replyokat
     //Mappel van megoldva
 
-    public static ArrayList<Map<Post,ArrayList<Reply>>> QueryGetEverything(String className)
+    public static List<Post> QueryGetEverything(String className)
     {
-        ArrayList<Map<Post,ArrayList<Reply>>> array = new ArrayList<Map<Post,ArrayList<Reply>>>();
+        List<Post> posts = null;
         try
         {
-            ArrayList<Post> postarray = GetListofPost(className);
-            for (Post post : postarray)
+            posts = GetListofPost(className);
+            for (Post post : posts)
             {
-                Map<Post,ArrayList<Reply>> mapp = new HashMap<Post, ArrayList<Reply>>();
-                ArrayList<Reply> replyarray = GetListofReply(post);
-                mapp.put(post, replyarray);
-                array.add(mapp);
+                post.setReplies(GetListofReply(post));
             }
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-        return array;
+        return posts;
     }
 
 }

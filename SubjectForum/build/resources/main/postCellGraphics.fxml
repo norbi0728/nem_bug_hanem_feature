@@ -1,0 +1,64 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root type="javafx.scene.control.ListCell" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <graphic>
+        <VBox>
+            <children>
+                <HBox spacing="10" fx:id="titleBox">
+                    <children>
+                        <Label fx:id="titleLabel" >
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="authorLabel">
+                        <HBox.margin>
+                            <Insets top="5"/>
+                        </HBox.margin>
+                        </Label>
+                        <Label fx:id="dateLabel">
+                            <HBox.margin>
+                                <Insets top="5"/>
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <Label fx:id="contentLabel"/>
+                <Label text="Megjegyzések">
+                    <VBox.margin>
+                        <Insets left="10.0" />
+                        <Insets bottom="4"/>
+                    </VBox.margin>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <VBox fx:id="commentVBox">
+                    <VBox.margin>
+                        <Insets left="10.0" />
+                    </VBox.margin>
+                    <children>
+
+
+                    </children>
+                </VBox>
+                <ListView fx:id="lv" editable="true" layoutX="153.0" layoutY="193.0" prefHeight="97.0" prefWidth="192.0" visible="false" />
+                <TextArea fx:id="commentArea" />
+                <Button fx:id="submitComment" text="Megjegyzés hozzáadása"/>
+            </children>
+        </VBox>
+
+    </graphic>
+</fx:root>

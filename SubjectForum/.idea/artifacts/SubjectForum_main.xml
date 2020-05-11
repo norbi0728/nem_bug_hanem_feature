@@ -1,0 +1,93 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="SubjectForum.main">
+    <output-path>$PROJECT_DIR$/out/artifacts/SubjectForum_main</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="main.SubjectForumApplication" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="SubjectForum_main.jar">
+        <element id="module-output" name="SubjectForum.main" />
+      </element>
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-java:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.13" />
+      <element id="library" level="project" name="Gradle: org.eclipse.jetty:jetty-server:9.4.0.M0" />
+      <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-client:2.6" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-support:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-chrome-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-edgehtml-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-edge-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-firefox-xpi-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-ie-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-opera-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-firefox-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-safari-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-remote-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-api:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
+      <element id="library" level="project" name="Gradle: org.eclipse.jetty:jetty-http:9.4.0.M0" />
+      <element id="library" level="project" name="Gradle: org.eclipse.jetty:jetty-io:9.4.0.M0" />
+      <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-common:2.6" />
+      <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0" />
+      <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-locator:2.2.0" />
+      <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-api:2.2.0" />
+      <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:javax.inject:2.2.0" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-devtools:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-json:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: com.google.guava:guava:28.2-jre" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-chromium-driver:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: org.seleniumhq.selenium:selenium-http:4.0.0-alpha-4" />
+      <element id="library" level="project" name="Gradle: com.google.auto.service:auto-service:1.0-rc6" />
+      <element id="library" level="project" name="Gradle: com.google.auto.service:auto-service-annotations:1.0-rc6" />
+      <element id="library" level="project" name="Gradle: com.squareup.okhttp3:okhttp:4.3.0" />
+      <element id="library" level="project" name="Gradle: org.asynchttpclient:async-http-client:2.10.4" />
+      <element id="library" level="project" name="Gradle: com.typesafe.netty:netty-reactive-streams:2.0.4" />
+      <element id="library" level="project" name="Gradle: io.opentracing:opentracing-api:0.33.0" />
+      <element id="library" level="project" name="Gradle: net.bytebuddy:byte-buddy:1.10.6" />
+      <element id="library" level="project" name="Gradle: org.apache.commons:commons-exec:1.3" />
+      <element id="library" level="project" name="Gradle: org.eclipse.jetty:jetty-util:9.4.0.M0" />
+      <element id="library" level="project" name="Gradle: javax.annotation:javax.annotation-api:1.2" />
+      <element id="library" level="project" name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.6" />
+      <element id="library" level="project" name="Gradle: org.glassfish.hk2:osgi-resource-locator:1.0.1" />
+      <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.2.0" />
+      <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.2.0" />
+      <element id="library" level="project" name="Gradle: org.javassist:javassist:3.18.1-GA" />
+      <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
+      <element id="library" level="project" name="Gradle: com.google.guava:failureaccess:1.0.1" />
+      <element id="library" level="project" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
+      <element id="library" level="project" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" />
+      <element id="library" level="project" name="Gradle: org.checkerframework:checker-qual:2.10.0" />
+      <element id="library" level="project" name="Gradle: com.google.errorprone:error_prone_annotations:2.3.4" />
+      <element id="library" level="project" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" />
+      <element id="library" level="project" name="Gradle: com.google.auto:auto-common:0.10" />
+      <element id="library" level="project" name="Gradle: com.squareup.okio:okio:2.4.1" />
+      <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.61" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-handler-proxy:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec-http:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-handler:4.1.43.Final" />
+      <element id="library" level="project" name="Gradle: org.reactivestreams:reactive-streams:1.0.3" />
+      <element id="library" level="project" name="Gradle: org.asynchttpclient:async-http-client-netty-utils:2.10.4" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec-socks:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-transport-native-kqueue:osx-x86_64:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-resolver-dns:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.26" />
+      <element id="library" level="project" name="Gradle: com.sun.activation:javax.activation:1.2.0" />
+      <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.61" />
+      <element id="library" level="project" name="Gradle: org.jetbrains:annotations:13.0" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec:4.1.43.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-transport:4.1.43.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-buffer:4.1.43.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-common:4.1.43.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-transport-native-unix-common:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec-dns:4.1.42.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-resolver:4.1.43.Final" />
+    </root>
+  </artifact>
+</component>
