@@ -16,7 +16,7 @@ public class RabinKarpStringPatternMatching {
     }
 
     private final static String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
-            "abcdefghijklmnopqrstuvwxyzáéöûõüóúÁÉÚÖÛÕÓÜ" +
+            "abcdefghiíjklmnopqrstuvwxyzáéöûõüóúÁÉÚÖÛÕÓÜÍ" +
             "0123456789" +
             " ?!_-+=.,:;\"'/\\$%^&*()[]{}<>¬`??@~#\n\t";
     private static Map<Character, Integer> alphabetCode;
@@ -46,21 +46,21 @@ public class RabinKarpStringPatternMatching {
         if(n >= m){
             for (int i = 0; i < m; i++){
                 //it calculates the pattern's code's modulo q
-                p = (d * p + alphabetCode.get(pattern.charAt(i))) % q; //it does the encoding on the fly
+                p = (d * p + alphabetCode.get(pattern.toLowerCase().charAt(i))) % q; //it does the encoding on the fly
                 //it calculate the encoded text's first m length substring's modulo q
-                t = (d * t + alphabetCode.get(text.charAt(i))) % q;
+                t = (d * t + alphabetCode.get(text.toLowerCase().charAt(i))) % q;
             }
             //the matching part
             for (int s = 0; s < n - m + 1; s++){
                 if(p == t){//if their division remainder is the same, we maybe found a match
-                    if(pattern.compareTo(text.substring(s, s + m)) == 0){ //test if the two strings are the same
+                    if(pattern.toLowerCase().compareTo(text.toLowerCase().substring(s, s + m)) == 0){ //test if the two strings are the same
                         for (int i = s; i < s + m; i++){
                             matchingIndices.add(i); //if we found a matching sequence, we want to store it
                         }                           //because that later we will know which characters to color
                     }
                 }
                 if(s < n - m){ //if we don't reached the end of the text yet
-                    t = (d * (t - alphabetCode.get(text.charAt(s)) * h) + alphabetCode.get(text.charAt(s + m))) % q;
+                    t = (d * (t - alphabetCode.get(text.toLowerCase().charAt(s)) * h) + alphabetCode.get(text.toLowerCase().charAt(s + m))) % q;
                     if (t < 0) //we have to make sure that t is always stays non negative
                         t = t + q;
                 }

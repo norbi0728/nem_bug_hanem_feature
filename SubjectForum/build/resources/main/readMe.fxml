@@ -7,20 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <TabPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <tabs>
       <Tab text="Első lépések">
          <content>
             <AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0">
                <children>
-                  <Label layoutX="230.0" layoutY="41.0" text="Első lépések">
+                  <Label layoutX="230.0" layoutY="25.0" text="Első lépések">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="58.0" layoutY="89.0" prefHeight="46.0" prefWidth="473.0" text="A program használatához készítse el saját felhasználói fiókját, majd jelentkezzen be a rendszerbe." wrapText="true" />
-                  <Label layoutX="58.0" layoutY="135.0" prefHeight="113.0" prefWidth="447.0" text="Bejelentkezés után a főoldal fogadja, ahol lehetősége van megadni a Neptun belépési adatait a tantárgyai beöltésére. Ha nem kíván élni ezzel a lehetőséggel, akkor válassza a Listázás funkciót az összes tárgy listázásához, vagy keressen rá a kívánt tárgyra név szerint." wrapText="true" />
+                  <Label layoutX="58.0" layoutY="67.0" prefHeight="46.0" prefWidth="473.0" text="A program használatához készítse el saját felhasználói fiókját, majd jelentkezzen be a rendszerbe." wrapText="true" />
+                  <Label layoutX="58.0" layoutY="121.0" prefHeight="113.0" prefWidth="447.0" text="Bejelentkezés után a főoldal fogadja, ahol lehetősége van megadni a Neptun belépési adatait a tantárgyai betöltésére. Ha nem kíván élni ezzel a lehetőséggel, akkor válassza a Listázás funkciót az összes tárgy listázásához, vagy keressen rá a kívánt tárgyra név szerint." wrapText="true" />
+                  <Label layoutX="55.0" layoutY="242.0" prefHeight="46.0" prefWidth="453.0" text="Ezt az felületet bármikor előhozhatja a főoldalról is, a menüsávban található Súgó menöponból." wrapText="true" />
                </children>
             </AnchorPane>
          </content>
@@ -34,7 +34,8 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="68.0" layoutY="80.0" prefHeight="139.0" prefWidth="465.0" text="Miután a Neptun rendszerből betöltötte tárgyait, a Tárgyaim menüpont alatt elérhetőek azok. A megjelenő tárgyak nevére való egyszeri kattintással egyből a tárgyhoz tartozó fórum oldalra juthat. Ugyan ez igaz akkor is, ha a Listázás menüpontot választja. Keresés választása esetén a tantárgy pontos nevét kell megadni. Ez esetben a keresés befejeztével egyből a tárgy oldalára jut. " wrapText="true" />
+                  <Label layoutX="68.0" layoutY="80.0" prefHeight="109.0" prefWidth="465.0" text="Miután a Neptun rendszerből betöltötte tárgyait, a Tárgyaim menüpont alatt elérhetőek azok. A megjelenő tárgyak nevére való egyszeri kattintással egyből a tárgyhoz tartozó fórum oldalra juthat. Ugyan ez igaz akkor is, ha a Listázás menüpontot választja. " wrapText="true" />
+                  <Label layoutX="68.0" layoutY="200.0" prefHeight="51.0" prefWidth="455.0" text="Keresés választása esetén a tantárgy pontos nevét kell megadni. Ez esetben a keresés befejeztével egyből a tárgy oldalára jut. " wrapText="true" />
                </children>
             </AnchorPane>
         </content>
@@ -43,12 +44,14 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="108.0" layoutY="40.0" text="Fórumbejegyzés közzététele és megjegyzések">
+                  <Label layoutX="68.0" layoutY="231.0" prefHeight="45.0" prefWidth="460.0" text="Az oldal frissítéséhez kattintson a Frissítés gombra, ekkor a rendszer betölti a mások által hozzáadott tartalmakat." wrapText="true" />
+                  <Label layoutX="105.0" layoutY="30.0" text="Fórumbejegyzés közzététele és megjegyzések" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="68.0" layoutY="80.0" prefHeight="209.0" prefWidth="465.0" text="Miután egy adott tárgy oldalára jutott, lehetősége van új fórumbejegyzés létrehozására, illetve meglévő bejegyzések kommentálására. Bejegyzés írásakor ügyeljen arra, hogy megadja a bejegyzés címét, ezzel segítve a bejegyzés struktúrájának megörzését. Ezen az oldalon lehetőség van keresni a bejegyzések között tartalom és cím alapján. Ehhez elég egy szövegrészletet megadnia. Az oldal frissítéséhez kattintson a Frissítés gombra, ekkor a rendszer betölti a mások által hozzáadott tartalmakat." wrapText="true" />
+                  <Label layoutX="68.0" layoutY="57.0" prefHeight="104.0" prefWidth="465.0" text="Miután egy adott tárgy oldalára jutott, lehetősége van új fórumbejegyzés létrehozására, illetve meglévő bejegyzések kommentálására. Bejegyzés írásakor ügyeljen arra, hogy megadja a bejegyzés címét, ezzel segítve a bejegyzés struktúrájának megörzését. " wrapText="true" />
+                  <Label layoutX="68.0" layoutY="161.0" prefHeight="64.0" prefWidth="466.0" text="Ezen az oldalon lehetőség van keresni a bejegyzések között tartalom és cím alapján. Ehhez elég egy szövegrészletet megadnia. A keresés nem kis-nagybetű érzékeny. " wrapText="true" />
                </children>
             </AnchorPane>
          </content>

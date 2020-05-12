@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SubjectForum_main.jar" size="37051" download="eager" />
+    <jar href="SubjectForum_main.jar" size="37083" download="eager" />
     <jar href="annotations-13.0.jar" size="17536" download="eager" />
     <jar href="aopalliance-repackaged-2.2.0.jar" size="14867" download="eager" />
     <jar href="async-http-client-2.10.4.jar" size="444278" download="eager" />

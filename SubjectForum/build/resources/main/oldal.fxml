@@ -146,9 +146,9 @@
                   <VBox fx:id="statusVBox" minHeight="24.0" prefHeight="24.0">
                      <children>
                         <Separator prefHeight="24.0" />
-                        <StackPane>
+                        <StackPane maxHeight="23.0" minHeight="23.0">
                            <children>
-                              <HBox fx:id="statusHBox2" spacing="10.0" visible="false">
+                              <HBox fx:id="statusHBox2" minHeight="23.0" spacing="10.0" visible="false">
                                  <children>
                                     <Label fx:id="statusLabel" text="Label">
                                        <HBox.margin>
@@ -161,7 +161,7 @@
                                     <Insets left="10.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox fx:id="statusHBox" layoutX="44.0" layoutY="4.0" prefHeight="0.0" prefWidth="1567.0" spacing="10.0" visible="false">
+                              <HBox fx:id="statusHBox" layoutX="44.0" layoutY="4.0" minHeight="23.0" prefHeight="0.0" prefWidth="1567.0" spacing="10.0" visible="false">
                                  <children>
                                     <Label layoutX="44.0" layoutY="4.0" text="Bejelentkezve:">
                                        <padding>
@@ -183,13 +183,13 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Fájl">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Bezárás" onAction="#exitProgram"/>
+                    <MenuItem mnemonicParsing="false" onAction="#exitProgram" text="Bezárás" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Szerkesztés" />
                 <Menu mnemonicParsing="false" text="Súgó">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Felhasználói kézikönyv" onAction="#loadUserManual" />
+                    <MenuItem mnemonicParsing="false" onAction="#loadUserManual" text="Felhasználói kézikönyv" />
                   </items>
                 </Menu>
               </menus>
